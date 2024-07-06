@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dqp2gua5cyyg3"]
+[gd_scene load_steps=2 format=3 uid="uid://dqp2gua5cyyg3"]
+
+[ext_resource type="Script" path="res://CoreScenes/mainMenu.gd" id="1_mi0y4"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mi0y4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -372.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+
+[node name="New Game" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "New Game"
+
+[node name="Load Game" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Load Game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
