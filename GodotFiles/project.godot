@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="p_TC"
-run/main_scene="res://CoreScenes/mainMenu.tscn"
+run/main_scene="res://CoreScenes/0.0.  mainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
