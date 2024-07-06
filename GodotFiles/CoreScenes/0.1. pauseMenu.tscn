@@ -1,9 +1,79 @@
-[gd_scene format=3 uid="uid://degdmn4nbac3t"]
+[gd_scene load_steps=2 format=3 uid="uid://degdmn4nbac3t"]
 
-[node name="Control" type="Control"]
+[ext_resource type="Script" path="res://CoreScenes/0.1. pauseMenu.gd" id="1_jdibw"]
+
+[node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jdibw")
+
+[node name="MainMenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -372.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuContainer"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MainMenuContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "Resume"
+
+[node name="Settings" type="Button" parent="MainMenuContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit to main menu" type="Button" parent="MainMenuContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
+text = "Quit"
+
+[node name="quitConfirm" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(404, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.454
+anchor_right = 0.5
+anchor_bottom = 0.454
+offset_left = -202.0
+offset_top = -0.320099
+offset_right = 202.0
+offset_bottom = 49.6799
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="quitConfirm"]
+layout_mode = 2
+
+[node name="Yes" type="Button" parent="quitConfirm/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Yes"
+
+[node name="No" type="Button" parent="quitConfirm/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "No"
+
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/Quit to main menu" to="." method="_on_quit_to_main_menu_pressed"]
+[connection signal="pressed" from="quitConfirm/HBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="quitConfirm/HBoxContainer/No" to="." method="_on_no_pressed"]
