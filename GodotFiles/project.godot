@@ -15,6 +15,10 @@ run/main_scene="res://CoreScenes/0.0.  mainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalMonitor="*res://Scripts/_global_monitor.gd"
+
 [display]
 
 window/size/viewport_width=1920

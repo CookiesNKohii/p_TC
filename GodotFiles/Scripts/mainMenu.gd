@@ -9,10 +9,14 @@ extends Control
 
 @onready var activeContainer = mainMenuContainer
 
+
+func _ready():
+	print(str(GlobalMonitor.globalActiveContainer))
+	
+
 func _process(delta):
-	#print("_")
 	if Input.is_action_just_pressed("Esc"):
-		activeContainer.visible = !activeContainer.visible
+		GlobalMonitor.globalActiveContainer.visible = !GlobalMonitor.globalActiveContainer.visible
 		activeContainer = mainMenuContainer 
 		activeContainer.visible = true
 	else:
@@ -23,8 +27,8 @@ func _on_new_game_pressed(): #when pressed, will make Menu Margin invisible and 
 	activeContainer.visible = !activeContainer.visible
 	savingFile = true
 	loadingFile = false
-	activeContainer = saveFileContainer
-	activeContainer.visible = true
+	GlobalMonitor.globalActiveContainer = saveFileContainer
+	GlobalMonitor.globalActiveContainer.visible = true
 
 
 
