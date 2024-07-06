@@ -1,20 +1,52 @@
 extends Control
 
+@onready var savingFile = true
+@onready var loadingFile = null
+@onready var saveFiles = null
+@onready var settingsContainer = $SettingsContainer
+@onready var saveFileContainer = $SaveFilesContainer
+@onready var mainMenuContainer = $MainMenuContainer
+
+@onready var activeContainer = mainMenuContainer
+
+func _process(delta):
+	#print("_")
+	if Input.is_action_just_pressed("Esc"):
+		activeContainer.visible = !activeContainer.visible
+		activeContainer = mainMenuContainer 
+		activeContainer.visible = true
+	else:
+		pass
 
 func _on_new_game_pressed(): #when pressed, will make Menu Margin invisible and save files Container visible - funcSAVING == true, funcLOADING == false
-	pass # Replace with function body.
+	print("New Game")
+	activeContainer.visible = !activeContainer.visible
+	savingFile = true
+	loadingFile = false
+	activeContainer = saveFileContainer
+	activeContainer.visible = true
 
 
 
 func _on_load_game_pressed(): #when pressed, will make Menu Margin invisible and save files Container visible - funcSAVING == false, funcLOADING == true
-	pass # Replace with function body.
-
+	print("Load Game")
+	activeContainer.visible = !activeContainer.visible
+	savingFile = false
+	loadingFile = true
+	activeContainer = saveFileContainer
+	if saveFiles == null:
+		savingFile = true
+		loadingFile = false
+		print("Error: No save files available. Press 'New Game' to create a new save")
+		activeContainer.visible = true
+	else:
+		pass
 
 
 
 func _on_settings_pressed(): #when pressed, will make Menu Container invisible and settings Container visible
-	pass # Replace with function body.
-
+	print("Settings")
+	activeContainer = settingsContainer
 
 
 
