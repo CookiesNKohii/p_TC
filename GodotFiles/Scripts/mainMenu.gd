@@ -16,7 +16,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("Esc"):
-		GlobalMonitor.globalActiveContainer.visible = !GlobalMonitor.globalActiveContainer.visible
+		GlobalMonitor.globalActiveContainer.visible = !GlobalMonitor.globalActiwveContainer.visible
 		activeContainer = mainMenuContainer 
 		activeContainer.visible = true
 	else:

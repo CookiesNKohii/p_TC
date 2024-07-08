@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dabs4oqy6l4fn"]
+
+[ext_resource type="Script" path="res://CoreScenes/Dummy.gd" id="1_8v1c8"]
+[ext_resource type="Script" path="res://Characters/Enemies/Dummy.gd" id="2_2ofsr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iluqj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xquhr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m2had"]
+radius = 1.66011
+
+[node name="Dummy" type="Node3D"]
+script = ExtResource("1_8v1c8")
+
+[node name="Dummy" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("2_2ofsr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy"]
+shape = SubResource("BoxShape3D_iluqj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Dummy/CollisionShape3D"]
+mesh = SubResource("BoxMesh_xquhr")
+skeleton = NodePath("../../../PlayerCharacter")
+
+[node name="Area3D" type="Area3D" parent="Dummy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/Area3D"]
+shape = SubResource("SphereShape3D_m2had")
+
+[connection signal="area_entered" from="Dummy/Area3D" to="." method="_on_area_3d_area_entered"]

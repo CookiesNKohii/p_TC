@@ -1,32 +1,34 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwm5pkj2r3jnv"]
 
-[ext_resource type="PackedScene" uid="uid://fnsshhxjtlw7" path="res://Characters/player_character.tscn" id="1_jk528"]
+[ext_resource type="PackedScene" uid="uid://fnsshhxjtlw7" path="res://Characters/Player/player_character.tscn" id="1_jk528"]
+[ext_resource type="PackedScene" uid="uid://dabs4oqy6l4fn" path="res://Characters/Enemies/Dummy.tscn" id="2_b2irw"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jfryh"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_agauu"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_s6lpe"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_hrhqi"]
 
 [node name="Greybox Scene" type="Node3D"]
+
+[node name="Dummy" parent="." instance=ExtResource("2_b2irw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36907, -4.18417)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_jk528")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225941, 0, -0.215252)
 
 [node name="World Boundary" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World Boundary"]
 shape = SubResource("WorldBoundaryShape3D_jfryh")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_jk528")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225941, 0, -0.215252)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World Boundary"]
+transform = Transform3D(10.3465, 0, 0, 0, 10.3465, 0, 0, 0, 10.3465, 0, 0, 0)
+mesh = SubResource("PlaneMesh_hrhqi")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="PlayerCharacter"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14863, -4.26443)
-shape = SubResource("BoxShape3D_agauu")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="PlayerCharacter/RigidBody3D/CollisionShape3D"]
-mesh = SubResource("BoxMesh_s6lpe")
-skeleton = NodePath("../../..")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.253303, 0.359232, 0.898215, 0.641362, -0.757465, 0.122072, 0.724219, 0.545159, -0.422266, 12.3878, 11.1107, 3.28092)
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85352, -0.344448)
+light_color = Color(0.728193, 0.742223, 0.997847, 1)
+light_energy = 3.162
+light_indirect_energy = 5.699
+light_specular = 0.0
+omni_range = 214.922
+omni_attenuation = 0.246826

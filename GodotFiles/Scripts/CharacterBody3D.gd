@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+@onready var neck := $Neck
+@onready var camera := $Neck/Camera3D
+@onready var activeHud = $"../ActiveHud"
+@onready var health = null
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -9,7 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _process(delta):
-	_camera_behaviour()
+	pass
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -34,7 +38,14 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _camera_behaviour():
-	if InputEventMouseMotion:
-		print("Cursor at ", get_viewport().get_mouse_position())
-		pass
+func _unhandled_input(event: InputEvent):
+	if event is InputEventMouseButton:
+		print("break")
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)	
+	elif Input.is_action_just_pressed("Esc"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			if event is InputEventMouseMotion:
+				neck.rotate_y(-event.relative.x* 1.2)
+				camera.rotate_x(-event.relative.y* 1.2)
+				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))

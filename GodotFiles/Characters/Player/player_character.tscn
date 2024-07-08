@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://fnsshhxjtlw7"]
+[gd_scene load_steps=6 format=3 uid="uid://fnsshhxjtlw7"]
 
-[ext_resource type="Script" path="res://Characters/CharacterBody3D.gd" id="1_uic3k"]
+[ext_resource type="Script" path="res://Scripts/CharacterBody3D.gd" id="1_uic3k"]
+[ext_resource type="PackedScene" uid="uid://bt6a72745yi65" path="res://Characters/Player/active_hud.tscn" id="2_krylg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02g46"]
 
@@ -12,6 +13,7 @@
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 7
 script = ExtResource("1_uic3k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -26,6 +28,10 @@ transform = Transform3D(0.3, 0, 0, 0, 0.120615, 0, 0, 0, 0.3, -0.0262389, 0.5787
 mesh = SubResource("BoxMesh_lr0r1")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/MeshInstance3D"]
-transform = Transform3D(3.33333, 0, 0, 0, 8.29086, 0, 0, 0, 3.33333, 0, 0, 0)
+[node name="Neck" type="Node3D" parent="CharacterBody3D"]
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0262389, 0.578767, -0.486265)
 fov = 92.315
+
+[node name="ActiveHud" parent="." instance=ExtResource("2_krylg")]
