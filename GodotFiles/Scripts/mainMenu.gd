@@ -56,3 +56,10 @@ func _on_settings_pressed(): #when pressed, will make Menu Container invisible a
 
 func _on_quit_pressed(): #when pressed, .exe stops
 	get_tree().quit()
+
+#Save Point system Code
+
+
+
+func _on_slot_1_pressed():
+	get_tree().change_scene_to_file("res://CoreScenes/9999. greybox_scene.tscn")

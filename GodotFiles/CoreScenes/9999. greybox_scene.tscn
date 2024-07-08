@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwm5pkj2r3jnv"]
+
+[ext_resource type="PackedScene" uid="uid://fnsshhxjtlw7" path="res://Characters/player_character.tscn" id="1_jk528"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jfryh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agauu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s6lpe"]
+
+[node name="Greybox Scene" type="Node3D"]
+
+[node name="World Boundary" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World Boundary"]
+shape = SubResource("WorldBoundaryShape3D_jfryh")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_jk528")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225941, 0, -0.215252)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="PlayerCharacter"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14863, -4.26443)
+shape = SubResource("BoxShape3D_agauu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PlayerCharacter/RigidBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_s6lpe")
+skeleton = NodePath("../../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.253303, 0.359232, 0.898215, 0.641362, -0.757465, 0.122072, 0.724219, 0.545159, -0.422266, 12.3878, 11.1107, 3.28092)

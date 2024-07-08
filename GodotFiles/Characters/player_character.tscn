@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://fnsshhxjtlw7"]
+[gd_scene load_steps=5 format=3 uid="uid://fnsshhxjtlw7"]
+
+[ext_resource type="Script" path="res://Characters/CharacterBody3D.gd" id="1_uic3k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02g46"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5w1ra"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lr0r1"]
 
 [node name="PlayerCharacter" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_uic3k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_02g46")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_5w1ra")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.120615, 0, 0, 0, 0.3, -0.0262389, 0.578767, -0.486265)
+mesh = SubResource("BoxMesh_lr0r1")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/MeshInstance3D"]
+transform = Transform3D(3.33333, 0, 0, 0, 8.29086, 0, 0, 0, 3.33333, 0, 0, 0)
+fov = 92.315
